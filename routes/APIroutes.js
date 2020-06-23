@@ -4,38 +4,38 @@ const db = require("../db/db.json");
 // dont touch above
 // ----------------------------
 // ----------------------------
-module.exports = function(app) {
+module.exports = function (app) {
 
-    app.get("/api/notes", function(req, res) {
-      res.json(db);
-    });
-  
-     // ---------------------------------------------------------------------------
-  
-    app.post("/api/notes", function(req, res) {
+  app.get("/api/notes", function (req, res) {
+    res.json(db);
+  });
 
-        const note = req.body;
+  // ---------------------------------------------------------------------------
 
-      note.id = new Date().getTime().toString();
+  app.post("/api/notes", function (req, res) {
 
-      console.log(note);
+    const note = req.body;
 
-        db.push(note);
-        res.json(note);
- 
-    });
+    note.id = new Date().getTime().toString();
 
-    app.delete("/api/notes/:note", function(req, res) {
+    console.log(note);
 
-      const note = req.body;
-      console.log(note);
+    db.push(note);
+    res.json(note);
 
-      db.splice(note, 1);
-      res.json(note);
+  });
 
-    });
-  
-// ----------------------------
-// ----------------------------
-// ----------------------------
+  app.delete("/api/notes/:id", function (req, res) {
+
+    const note = req.body;
+    console.log(note);
+
+    db.splice(note, 1);
+    res.json(note);
+
+  });
+
+  // ----------------------------
+  // ----------------------------
+  // ----------------------------
 };
