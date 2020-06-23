@@ -11,6 +11,7 @@ module.exports = function (app) {
   });
   app.post("/api/notes", function (req, res) {
     const note = req.body;
+    // below allows me to delete later with the timed id
     note.id = new Date().getTime().toString();
     console.log(note);
     db.push(note);
