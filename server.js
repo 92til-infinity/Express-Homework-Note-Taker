@@ -1,6 +1,7 @@
 // Require the Express
 var express = require("express");
-
+var APIroutes = require("./routes/APIroutes");
+var HTMLroutes = require("./routes/HTMLroutes");
 // Create an express server.
 var app = express();
 
@@ -16,9 +17,10 @@ app.use(express.static("public"));
 // ROUTES
 // important part, most projects will have these two styles of routes
 // require("./routes/whatevergoeshere")(app);
-require("./routes/APIroutes")(app);
-require("./routes/HTMLroutes")(app);
-
+// require("./routes/APIroutes")(app);
+// require("./routes/HTMLroutes")(app);
+app.use("/api", APIroutes);
+app.use("/", HTMLroutes);
 // LISTENER
 
 app.listen(PORT, function () {

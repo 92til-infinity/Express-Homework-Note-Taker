@@ -8,7 +8,7 @@ var $noteList = $(".list-container .list-group");
 var activeNote = {};
 
 // A function for getting all notes from the db
-var getNotes = function () {
+var readNotes = function () {
   return $.ajax({
     url: "/api/notes",
     method: "GET"
@@ -127,7 +127,7 @@ var renderNoteList = function (notes) {
 
 // Gets notes from the db and renders them to the sidebar
 var getAndRenderNotes = function () {
-  return getNotes().then(function (data) {
+  return readNotes().then(function (data) {
     renderNoteList(data);
   });
 };

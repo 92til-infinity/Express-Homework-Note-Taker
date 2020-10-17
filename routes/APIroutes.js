@@ -1,26 +1,28 @@
-const db = require("../db/db.json");
-
+const router = require("express").Router();
+const store = require("../db/store");
 // ----------------------------
 // dont touch above
 // ----------------------------
 // post, get, and delete methods below
 // ----------------------------
-module.exports = function (app) {
-  app.get("/api/notes", function (req, res) {
-    res.json(db);
-  });
-  app.post("/api/notes", function (req, res) {
-    const note = req.body;
-    // below allows me to delete later with the timed id
-    note.id = new Date().getTime().toString();
-    console.log(note);
-    db.push(note);
-    res.json(note);
-  });
-  app.delete("/api/notes/:note", function (req, res) {
-    const note = req.body;
-    console.log(note);
-    db.splice(note, 1);
-    res.json(note);
-  });
-};
+
+router.get("/notes", function (req, res) {
+  store
+    .readNotes()
+    .then((notes) => res.json(notes))
+    .catch((err) => res.status(500).json(err));
+});
+router.post("/notes", function (req, res) {
+  store
+    .addNote()
+    .then((notes) => res.json(notes))
+    .catch((err) => res.status(500).json(err));
+});
+router.delete("/notes/:id", function (req, res) {
+  store
+    .removeNote()
+    .then((notes) => res.json(notes))
+    .catch((err) => res.status(500).json(err));
+});
+
+module.exports = router;
