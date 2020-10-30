@@ -15,8 +15,6 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // ROUTES
-// important part, most projects will have these two styles of routes
-// require("./routes/whatevergoeshere")(app);
 // require("./routes/APIroutes")(app);
 // require("./routes/HTMLroutes")(app);
 app.use("/api", APIroutes);
