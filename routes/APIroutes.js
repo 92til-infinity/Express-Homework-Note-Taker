@@ -14,13 +14,13 @@ router.get("/notes", function (req, res) {
 });
 router.post("/notes", function (req, res) {
   store
-    .addNote()
+    .addNote(req.body)
     .then((notes) => res.json(notes))
     .catch((err) => res.status(500).json(err));
 });
 router.delete("/notes/:id", function (req, res) {
   store
-    .removeNote()
+    .removeNote(req.params.id)
     .then((notes) => res.json(notes))
     .catch((err) => res.status(500).json(err));
 });
