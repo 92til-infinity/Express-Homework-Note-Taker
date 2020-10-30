@@ -1,7 +1,6 @@
 var util = require("util");
 var fs = require("fs");
 
-// This package will be used to generate our unique ids. https://www.npmjs.com/package/uuid
 var uuidv1 = require("uuid/v1");
 var readFileAsync = util.promisify(fs.readFile);
 var writeFileAsync = util.promisify(fs.writeFile);
